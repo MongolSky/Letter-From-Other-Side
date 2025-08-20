@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Письмо тем, кто учится любить во тьме</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+            color: #e8e8e8;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        #canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .title {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #ff9ff3, #54a0ff);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .letter-content {
+            font-size: 1.1em;
+            text-align: justify;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out forwards;
+            text-shadow: 0 0 10px rgba(232, 232, 232, 0.1);
+        }
+
+        .letter-content:nth-child(even) {
+            animation-delay: 0.2s;
+        }
+
+        .letter-content:nth-child(odd) {
+            animation-delay: 0.4s;
+        }
+
+        .emphasis {
+            color: #ff6b6b;
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
+        }
+
+        .address {
+            font-style: italic;
+            color: #feca57;
+            margin: 30px 0;
+            text-shadow: 0 0 15px rgba(254, 202, 87, 0.3);
+        }
+
+        .signature {
+            text-align: right;
+            font-style: italic;
+            margin-top: 50px;
+            color: #ff9ff3;
+            text-shadow: 0 0 15px rgba(255, 159, 243, 0.3);
+        }
+
+        .glow-text {
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        .interactive-area {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 3;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9em;
+            cursor: pointer;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .interactive-area:hover {
+            background: rgba(255, 107, 107, 0.2);
+            border-color: rgba(255, 107, 107, 0.3);
+            transform: scale(1.05);
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+            to { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 107, 107, 0.4); }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2em;
+            }
+            .container {
+                padding: 20px 15px;
+            }
+            .letter-content {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    
+    <div class="container">
+        <h1 class="title glow-text">Письмо тем, кто учится любить во тьме</h1>
+        
+        <div class="letter-content address">
+            <em>Милая Елена, дорогой Михаил,</em>
+        </div>
+
+        <div class="letter-content">
+            Сегодня утром я сидел у окна и смотрел, как дождь размывает границы между землей и небом. Думал о вас. О том, как вы сейчас просыпаетесь в разных комнатах — она в гостевой, он на диване, — и каждое утро заново решаете, остаться или уйти.
+        </div>
+
+        <div class="letter-content">
+            Я знаю, что она больше не узнает себя в зеркале. Что лицо, которое смотрит на нее оттуда, принадлежит незнакомке с голодными глазами и сжатыми губами. Женщине, которая может разнести в щепки чашку только потому, что кто-то неправильно поставил ее на стол. Женщине, которая впервые в жизни хочет того, что нельзя хотеть добропорядочным девочкам, выросшим в хороших семьях.
+        </div>
+
+        <div class="letter-content">
+            А он стоит и смотрит на эти осколки, и в его глазах — не ужас, а что-то другое. Что-то, чего она еще не может прочитать, потому что привыкла видеть себя только в кривом зеркале собственного стыда.
+        </div>
+
+        <div class="letter-content address">
+            <em>Елена,</em>
+        </div>
+
+        <div class="letter-content">
+            Помнишь, как в детстве ты находила раненых птиц? Как сидела с ними часами, шептала им что-то, и они выздоравливали в твоих ладонях? Ты думала, что твоя сила — в том, чтобы быть тихой, незаметной, целительной. Но ты ошибалась.
+        </div>
+
+        <div class="letter-content">
+            Твоя сила была в том, что ты не отворачивалась от боли. Не птицы исцелялись от твоих слов — ты исцелялась от их доверия. Они показывали тебе, что можно быть сломанным и все равно достойным любви.
+        </div>
+
+        <div class="letter-content">
+            Сейчас ты сама — раненая птица. Но вместо того чтобы позволить себе быть исцеленной, ты прячешь крылья и притворяешься, что умеешь только ходить по земле. Ты забыла, что у тебя есть когти не для того, чтобы причинять боль, а для того, чтобы держаться за ветку во время бури.
+        </div>
+
+        <div class="letter-content">
+            Этот <span class="emphasis">голод</span>, который тебя пугает, — это не стыд. Это жизнь, которая требует своего. Всю жизнь ты кормила других, а сама довольствовалась крошками. Теперь твоя душа восстала и говорит: "Достаточно. Я тоже хочу есть."
+        </div>
+
+        <div class="letter-content address">
+            <em>Михаил,</em>
+        </div>
+
+        <div class="letter-content">
+            А ты стоишь рядом и пытаешься понять, что с ней происходит. Иногда кажется, что она стала говорить на другом языке — языке огня, которого ты не знаешь. И ты думаешь: "Может, я не тот человек, который ей нужен сейчас? Может, она перерастет меня?"
+        </div>
+
+        <div class="letter-content">
+            Но знаешь, что меня поражает в тебе? Ты не убегаешь. Когда она кричит, ты не затыкаешь уши. Когда она плачет, ты не пытаешься ее успокоить дежурными фразами. Ты просто остаешься. И это не слабость, как ты думаешь. Это самое смелое, что может сделать мужчина — остаться рядом с женщиной, которая превращается из гусеницы в бабочку.
+        </div>
+
+        <div class="letter-content">
+            Видишь ли, большинство мужчин влюбляются в гусениц — мягких, предсказуемых, нуждающихся в защите. А потом пугаются, когда те превращаются в существ с крыльями, которые могут улететь куда угодно. Но ты почему-то не боишься. Почему-то доверяешь тому, что если она найдет свои крылья, то выберет лететь рядом с тобой.
+        </div>
+
+        <div class="letter-content address">
+            <em>Вам обоим.</em>
+        </div>
+
+        <div class="letter-content">
+            Несколько лет назад я видел, как горит лес. Стоял на холме и смотрел, как огонь пожирает деревья, которые росли сто лет. Было страшно и прекрасно одновременно. А через год я приехал туда снова. И увидел, что из пепла растут новые побеги. Более яркие, более живые. Оказывается, некоторым семенам нужен <span class="emphasis">огонь</span>, чтобы раскрыться.
+        </div>
+
+        <div class="letter-content">
+            То, что происходит между вами, — не катастрофа. Это огонь, который сжигает все, что было между вами случайным, привычным, удобным. Все договоренности, которые вы заключили из страха, а не из любви. Все роли, которые играли, чтобы не показывать друг другу свои настоящие лица.
+        </div>
+
+        <div class="letter-content">
+            Елена сейчас сжигает в себе "хорошую девочку", которая всю жизнь улыбалась, когда хотелось кричать. А Михаил сжигает в себе "спасителя", который любил не женщину, а свою способность ее утешать.
+        </div>
+
+        <div class="letter-content">
+            И когда весь этот пепел осядет, вы увидите друг друга впервые. Не роли, которые играли. Не проекции, которые создавали. А людей. Живых, противоречивых, сложных людей, которые выбрали показать друг другу правду, даже если она некрасива.
+        </div>
+
+        <div class="letter-content address">
+            <em>Знаете, что самое трудное в любви?</em>
+        </div>
+
+        <div class="letter-content">
+            Не найти человека, который полюбит твои светлые стороны. Это легко — мы все умеем любить красоту, доброту, нежность. Самое трудное — найти того, кто полюбит твою <span class="emphasis">тьму</span>. Кто увидит твою ярость, зависть, похоть, гордыню — и не отвернется. Кто скажет: "Да, ты и это тоже. И я все равно выбираю тебя."
+        </div>
+
+        <div class="letter-content">
+            Елена, твоя злость не делает тебя плохой. Она делает тебя человеком. А Михаил, твое желание иногда убежать не делает тебя трусом. Оно делает тебя честным.
+        </div>
+
+        <div class="letter-content">
+            Вы идете через самую темную часть леса. Там, где ветви так густы, что не видно звезд. Где каждый шаг дается с трудом, а каждый звук пугает. Но знаете, что я видел у тех, кто прошел этот путь до конца?
+        </div>
+
+        <div class="letter-content">
+            Они <span class="emphasis glow-text">светятся изнутри</span>. Как будто огонь, который мог их уничтожить, стал частью их сути. Они знают друг о друге все — и все равно будят утром с улыбкой. Не потому, что забыли тьму. А потому, что научились любить ее тоже.
+        </div>
+
+        <div class="letter-content">
+            <span class="emphasis">Елена,</span> эта ярость, которая в тебе кипит, — это твоя сила, которая слишком долго спала. Не прячь ее. Не стыдись ее. Научись направлять ее на то, что действительно достойно твоего гнева — на несправедливость, на ложь, на все то, что мешает людям быть живыми.
+        </div>
+
+        <div class="letter-content">
+            <span class="emphasis">Михаил,</span> эта нежность, с которой ты смотришь на ее боль, — это не слабость. Это мудрость. Ты понимаешь то, чего не понимают многие: иногда лучший способ помочь человеку — не мешать ему разваливаться.
+        </div>
+
+        <div class="letter-content">
+            В конце, когда все уляжется — а оно уляжется, — вы будете сидеть на пороге дома и смотреть на закат. И она положит голову тебе на плечо, и ты поймешь: это та самая женщина, в которую ты влюбился. Только теперь она знает, что достойна любви не за то, что хорошая, а просто за то, что живая.
+        </div>
+
+        <div class="letter-content">
+            А она посмотрит на тебя и поймет: это тот самый мужчина, который остался. Не потому, что не видел альтернатив. А потому, что увидев все ее лица — и светлые, и темные — выбрал именно ее.
+        </div>
+
+        <div class="letter-content">
+            Держитесь. <span class="emphasis glow-text">Любовь, которая рождается в огне, не сгорает от мелких ссор.</span>
+        </div>
+
+        <div class="letter-content signature">
+            <em>С верой в то, что вы найдете друг друга заново,</em><br><br>
+            <em>Тот, кто помнит свой собственный огонь</em>
+        </div>
+    </div>
+
+    <div class="interactive-area" onclick="toggleEffect()">
+        ✨ Коснитесь огня
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let particles = [];
+        let flames = [];
+        let stars = [];
+        let raindrops = [];
+        let effectMode = 0; // 0: rain, 1: fire, 2: stars, 3: combined
+        
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        
+        // Particle class for general effects
+        class Particle {
+            constructor(x, y, vx, vy, color, life, size) {
+                this.x = x;
+                this.y = y;
+                this.vx = vx;
+                this.vy = vy;
+                this.color = color;
+                this.life = life;
+                this.maxLife = life;
+                this.size = size;
+                this.alpha = 1;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.life--;
+                this.alpha = this.life / this.maxLife;
+                
+                if (this.life <= 0) {
+                    return false;
+                }
+                return true;
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+        
+        // Flame particle
+        class Flame {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = -Math.random() * 3 - 1;
+                this.life = Math.random() * 30 + 30;
+                this.maxLife = this.life;
+                this.size = Math.random() * 8 + 2;
+                this.hue = Math.random() * 60; // Orange to red range
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy *= 0.98;
+                this.vx *= 0.99;
+                this.life--;
+                this.size *= 0.98;
+                
+                return this.life > 0 && this.size > 0.1;
+            }
+            
+            draw() {
+                const alpha = this.life / this.maxLife;
+                const gradient = ctx.createRadialGradient(
+                    this.x, this.y, 0,
+                    this.x, this.y, this.size
+                );
+                
+                gradient.addColorStop(0, `hsla(${this.hue + 20}, 100%, 70%, ${alpha})`);
+                gradient.addColorStop(0.5, `hsla(${this.hue}, 100%, 50%, ${alpha * 0.8})`);
+                gradient.addColorStop(1, `hsla(${this.hue - 20}, 100%, 30%, 0)`);
+                
+                ctx.save();
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+        
+        // Star particle
+        class Star {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speed = Math.random() * 0.5 + 0.1;
+                this.opacity = Math.random() * 0.8 + 0.2;
+                this.twinkle = Math.random() * 0.02 + 0.01;
+                this.phase = Math.random() * Math.PI * 2;
+            }
+            
+            update() {
+                this.phase += this.twinkle;
+                this.opacity = 0.3 + Math.sin(this.phase) * 0.5;
+                
+                // Slow drift
+                this.x += Math.sin(this.phase * 0.1) * 0.1;
+                this.y += this.speed * 0.1;
+                
+                if (this.x < 0) this.x = width;
+                if (this.x > width) this.x = 0;
+                if (this.y > height) this.y = 0;
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = '#ffffff';
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = '#ffffff';
+                
+                // Draw star shape
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Add cross effect
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 0.5;
+                ctx.beginPath();
+                ctx.moveTo(this.x - this.size * 2, this.y);
+                ctx.lineTo(this.x + this.size * 2, this.y);
+                ctx.moveTo(this.x, this.y - this.size * 2);
+                ctx.lineTo(this.x, this.y + this.size * 2);
+                ctx.stroke();
+                
+                ctx.restore();
+            }
+        }
+        
+        // Raindrop particle
+        class Raindrop {
+            constructor() {
+                this.x = Math.random() * (width + 100) - 50;
+                this.y = -10;
+                this.speed = Math.random() * 5 + 3;
+                this.length = Math.random() * 15 + 5;
+                this.opacity = Math.random() * 0.6 + 0.4;
+            }
+            
+            update() {
+                this.y += this.speed;
+                this.x += Math.sin(this.y * 0.01) * 0.5;
+                
+                return this.y < height + 10;
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.strokeStyle = '#87ceeb';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x, this.y + this.length);
+                ctx.stroke();
+                ctx.restore();
+            }
+        }
+        
+        // Initialize effects
+        function initStars() {
+            stars = [];
+            for (let i = 0; i < 100; i++) {
+                stars.push(new Star());
+            }
+        }
+        
+        function createFlames() {
+            if (Math.random() < 0.3) {
+                const x = Math.random() * width;
+                const y = height - Math.random() * 100;
+                flames.push(new Flame(x, y));
+            }
+        }
+        
+        function createRain() {
+            if (Math.random() < 0.3) {
+                raindrops.push(new Raindrop());
+            }
+        }
+        
+        function createEmbers() {
+            if (Math.random() < 0.1) {
+                const x = Math.random() * width;
+                const y = height - Math.random() * 50;
+                const color = `hsl(${Math.random() * 60}, 100%, 70%)`;
+                particles.push(new Particle(
+                    x, y,
+                    (Math.random() - 0.5) * 2,
+                    -Math.random() * 2 - 1,
+                    color,
+                    Math.random() * 60 + 60,
+                    Math.random() * 3 + 1
+                ));
+            }
+        }
+        
+        function animate() {
+            ctx.fillStyle = 'rgba(26, 26, 46, 0.1)';
+            ctx.fillRect(0, 0, width, height);
+            
+            // Update and draw based on current effect mode
+            switch(effectMode) {
+                case 0: // Rain
+                    createRain();
+                    raindrops = raindrops.filter(drop => {
+                        drop.update();
+                        drop.draw();
+                        return drop.y < height + 10;
+                    });
+                    break;
+                    
+                case 1: // Fire
+                    createFlames();
+                    createEmbers();
+                    flames = flames.filter(flame => {
+                        flame.update();
+                        flame.draw();
+                        return flame.life > 0;
+                    });
+                    break;
+                    
+                case 2: // Stars
+                    stars.forEach(star => {
+                        star.update();
+                        star.draw();
+                    });
+                    break;
+                    
+                case 3: // Combined
+                    createRain();
+                    createFlames();
+                    createEmbers();
+                    
+                    raindrops = raindrops.filter(drop => {
+                        drop.update();
+                        drop.draw();
+                        return drop.y < height + 10;
+                    });
+                    
+                    flames = flames.filter(flame => {
+                        flame.update();
+                        flame.draw();
+                        return flame.life > 0;
+                    });
+                    
+                    stars.forEach(star => {
+                        star.update();
+                        star.draw();
+                    });
+                    break;
+            }
+            
+            // Update and draw particles
+            particles = particles.filter(particle => {
+                particle.update();
+                particle.draw();
+                return particle.life > 0;
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        function toggleEffect() {
+            effectMode = (effectMode + 1) % 4;
+            
+            // Clear existing effects when switching
+            particles = [];
+            flames = [];
+            raindrops = [];
+            
+            // Initialize stars if needed
+            if (effectMode === 2 || effectMode === 3) {
+                if (stars.length === 0) {
+                    initStars();
+                }
+            }
+            
+            // Update button text
+            const button = document.querySelector('.interactive-area');
+            const texts = ['✨ Коснитесь огня', '⭐ Коснитесь звезд', '🌧️ Коснитесь дождя', '🔥 Все вместе'];
+            button.textContent = texts[effectMode];
+        }
+        
+        // Mouse interaction
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+            
+            if (effectMode === 1 || effectMode === 3) {
+                // Create flames near mouse
+                if (Math.random() < 0.5) {
+                    flames.push(new Flame(mouseX + (Math.random() - 0.5) * 50, mouseY));
+                }
+            }
+            
+            if (effectMode === 0 || effectMode === 3) {
+                // Create sparkles near mouse
+                if (Math.random() < 0.3) {
+                    particles.push(new Particle(
+                        mouseX + (Math.random() - 0.5) * 30,
+                        mouseY + (Math.random() - 0.5) * 30,
+                        (Math.random() - 0.5) * 4,
+                        (Math.random() - 0.5) * 4,
+                        '#87ceeb',
+                        30,
+                        Math.random() * 2 + 1
+                    ));
+                }
+            }
+        });
+        
+        // Initialize
+        initStars();
+        animate();
+        
+        // Auto-cycle through effects every 15 seconds
+        setInterval(() => {
+            toggleEffect();
+        }, 15000);
+    </script>
+</body>
+</html>
